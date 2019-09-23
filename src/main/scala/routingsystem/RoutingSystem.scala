@@ -26,7 +26,11 @@ object RoutingSystem extends Directives {
             case bodyPart: BodyPart =>
               // stream into a file as the chunks of it arrives and return a future
               // file to where it got stored
-              val file: File = new File("/home/alex/work/test_file_upload/test_file_upload.tmp")
+              val file: File = bodyPart.filename match {
+                case Some(name) => new File("/home/alex/work/test_file_upload/" + name)
+                case None => new File("/home/alex/work/test_file_upload/upload.tmp")
+              }
+
               bodyPart.entity.dataBytes.runWith(FileIO.toFile(file)).map(_ => bodyPart.name -> file)
 
           }.runFold(Map.empty[String, Any])((map, tuple) => map + tuple)
