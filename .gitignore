@@ -1,0 +1,7 @@
+# Project exclude paths
+/project/target/
+/target/
+/target/scala-2.12/classes/
+/home/alex/IdeaProjects/file_upload_test/.idea
+/home/alex/IdeaProjects/file_upload_test/project
+/home/alex/IdeaProjects/file_upload_test/target
